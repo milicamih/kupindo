@@ -2,9 +2,25 @@
   <div class="col-12">
     TODO 2: Search forma
   </div>
+
   <div class="col-12">
-    TODO 1: Prikaz aukcija
+    <div *ngFor="let auction of auctions" class="flex-container">
+        <div class="left-flex-child">
+            <img src="assets/images/items/{{auction.image}}" alt="">
+        </div>
+        <div class="right-flex-child">
+          <h4><b>{{auction.name}}</b></h4>
+           <p>{{auction.description}}</p>
+           <p><b>Cena: {{auction.price}} din.</b></p>
+           <div class="dates-container">
+              <span class="margin-right">Datum objave: {{auction.dateStart}}</span>
+              <span>Datum zatvaranja: {{auction.dateEnd}}</span>
+           </div>
+           <p>{{auction.category}}</p>
+        </div>
+    </div>
   </div>
+
   <div class="col-12">
     TODO 3: Load more
   </div>
