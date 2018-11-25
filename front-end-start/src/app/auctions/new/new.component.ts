@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { Auction } from '../model/auction';
+import { RequestParams, Filter } from '../model/requestParams';
+import { DataService } from '../services/data.service';
+
 
 @Component({
-  selector: 'kupi-new',
+  selector: 'app-kupi-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.css'],
   providers: [NgbCarouselConfig]
@@ -12,9 +15,9 @@ import { Auction } from '../model/auction';
 export class NewComponent implements OnInit {
 
   oldestAuctions: Auction[] = [];
-  newestAuctions : Auction[] = [];
+  newestAuctions: Auction[] = [];
 
-  constructor(private http: HttpClient, config: NgbCarouselConfig) { 
+  constructor(private dataService: DataService, config: NgbCarouselConfig) {
     config.interval = 7000;
     config.wrap = true;
     config.showNavigationArrows = false;
@@ -24,28 +27,32 @@ export class NewComponent implements OnInit {
     this.getOldestAuctions();
     this.getNewestAuctions();
   }
-  
-  
+
+
   getOldestAuctions() {
-    this.http.get<Auction[]>('http://localhost:3000/api/auctions?sort=dateEnd&sortDirection=asc&pageSize=5').subscribe(data => {
+    const requestParams = new RequestParams();
+    requestParams.pageSize = 5;
+    requestParams.sort = 'dateEnd';
+    requestParams.sortDirection = 'asc';
+
+    this.dataService.getAuctions(requestParams).subscribe(data => {
       this.oldestAuctions = data;
     }, error => {
       console.log('Error while getting oldest auctions.');
-    })
+    });
   }
 
   getNewestAuctions() {
-    this.http.get<Auction[]>('http://localhost:3000/api/auctions?sort=dateEnd&sortDirection=desc&pageSize=5').subscribe(data => {
+    const requestParams = new RequestParams();
+    requestParams.pageSize = 5;
+    requestParams.sort = 'dateEnd';
+    requestParams.sortDirection = 'desc';
+
+    this.dataService.getAuctions(requestParams).subscribe(data => {
       this.newestAuctions = data;
     }, error => {
       console.log('Error while getting newest auctions.');
-    })
+    });
   }
-
-  a(){
-    console.log(this.newestAuctions);
-  }
-	
-  
 
 }

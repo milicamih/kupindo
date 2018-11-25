@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // COMPONENTS ----------------------------------------------------
 import { AppComponent } from './app.component';
@@ -24,11 +22,9 @@ import { SearchComponent } from './auctions/search/search.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    AppRoutingModule, 
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule, 
-    NgxPaginationModule,
 
   ],
   bootstrap: [AppComponent]
