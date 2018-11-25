@@ -12,10 +12,28 @@
       <p><b>Aukcije koje uskoro ističu</b></p>
     </div>
     <div class="col-6">
-      TODO 4: Carousel za najnovije postavljene aukcije
+        <ngb-carousel *ngIf="newestAuctions != []">
+            <ng-template ngbSlide *ngFor="let newestAuction of newestAuctions">
+                <img src="assets/images/items/{{newestAuction.image}}" alt="Random first slide">
+                <div class="carousel-caption">
+                   <h3 class="auctions-sliders-info"><b>{{newestAuction.name}}</b></h3>
+                   <p class="auctions-sliders-info"><b>Cena: {{newestAuction.price}},00 din.</b></p>
+                   <p class="margin-right auctions-sliders-info"><b>Datum zatvaranja: {{newestAuction.dateEnd | date: "H:mm, y.MM.d"}}</b></p>  
+                </div>
+            </ng-template> 
+        </ngb-carousel>
     </div>
     <div class="col-6">
-      TODO 5: Carousel za aukcije koje uskoro ističu
-    </div>
+        <ngb-carousel *ngIf="oldestAuctions != []">
+            <ng-template ngbSlide *ngFor="let oldestAuction of oldestAuctions">
+                <img src="assets/images/items/{{oldestAuction.image}}" alt="Random first slide">
+                <div class="carousel-caption">
+                  <h3 class="auctions-sliders-info"><b>{{oldestAuction.name}}</b></h3>
+                  <p class="auctions-sliders-info"><b>Cena: {{oldestAuction.price}},00 din.</b></p>
+                  <p class="margin-right auctions-sliders-info"><b>Datum zatvaranja: {{oldestAuction.dateEnd | date: "H:mm, y.MM.d"}}</b></p>  
+                </div>
+            </ng-template> 
+         </ngb-carousel>
+    </div>  
   </div>
 </div>

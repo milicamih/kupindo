@@ -1,7 +1,33 @@
 <div class="row padding">
   <div class="col-12">
-    TODO 2: Search forma
-  </div>
+    <div class="serch-container">
+      <!--select for category-->
+      <div>
+        <label for="category" class="margin-right">Kategorija</label>
+        <select class="select" [(ngModel)]="selectedCategory">
+            <option *ngFor="let category of categories" [ngValue]="category"> 
+              {{category.name}}
+            </option>
+       </select>
+      </div>
+      <!--select for category-->
+      <div>
+        <label for="subcategories" class="margin-right">Podkategorija</label>
+        <select class="select" (change)="selectSubcategory($event)">
+            <option disabled selected value style="display:none">zahteva kategoriju</option>
+            <option *ngFor = "let subcategory of selectedCategory?.subcategories"
+            [ngValue]="subcategory">
+            {{subcategory}}
+           </option>
+        </select>    
+     </div>
+     <div>
+      <label for="name" class="margin-right">Ime</label>
+      <input type="text" class="input-field" 
+      (input)="onSearchChange($event.target.value)">
+     </div>
+   </div> <!--search container close-->
+  </div> <!--bootstrap col  close--> 
 
   <div class="col-12">
     <div *ngFor="let auction of auctions" class="flex-container">
@@ -11,10 +37,10 @@
         <div class="right-flex-child">
           <h4><b>{{auction.name}}</b></h4>
            <p>{{auction.description}}</p>
-           <p><b>Cena: {{auction.price}} din.</b></p>
+           <p><b>Cena: {{auction.price}},00 din.</b></p>
            <div class="dates-container">
-              <span class="margin-right">Datum objave: {{auction.dateStart}}</span>
-              <span>Datum zatvaranja: {{auction.dateEnd}}</span>
+              <span class="margin-right">Datum objave: {{auction.dateStart | date: "H:mm, y.MM.d"}}</span>
+              <span>Datum zatvaranja: {{auction.dateEnd | date: "H:mm, y.MM.d"}}</span>
            </div>
            <p>{{auction.category}}</p>
         </div>
@@ -22,6 +48,6 @@
   </div>
 
   <div class="col-12">
-    TODO 3: Load more
+    <button (click)="loadMoreItemsButton()" *ngIf="showLoadMoreBtn">show more</button>
   </div>
 </div>

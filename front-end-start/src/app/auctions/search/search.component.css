@@ -2,10 +2,26 @@
   padding: 10px;
   text-align: center;
 }
+/* searching row style*/
+.serch-container{
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  font-size:15px;
+}
+.input-field, .select{
+  width:165px !important;
+  color:grey;
+  height: 25px;
+}
+.input-field{
+  border-radius: none !important;
+}
+/* auction elements style style*/
 .flex-container{
   display: flex;
   justify-content: center;
 }
 .margin-right{
-  margin-right:10px;
+  margin-right:6px;
 }
